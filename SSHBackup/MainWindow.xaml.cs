@@ -179,5 +179,18 @@ namespace SSHBackup
             cmdNew.Focus();
             settings.SaveMe("Save settings before exit?");
         }
+
+        private void cmdBrowse_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            dialog.SelectedPath = txtLocalFolder.Text;
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            if(result == System.Windows.Forms.DialogResult.OK)
+            {
+                txtLocalFolder.Text = dialog.SelectedPath;
+            }
+
+        }
     }
 }

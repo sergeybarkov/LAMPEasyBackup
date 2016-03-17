@@ -6,31 +6,32 @@
         xmlns:local="clr-namespace:SSHBackup"
         xmlns:Properties="clr-namespace:SSHBackup.Properties" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="SSHBackup.MainWindow"
         mc:Ignorable="d"
-        Title="SSHBackup for MySQL Database" Height="406.863" Width="649.534" Closing="Window_Closing">
+        Title="LAMPEasyBackup by Sergey Barkov" Height="415.98" Width="683.724" Closing="Window_Closing">
     <!--<Grid>-->
     <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal" Height="347" Margin="0">
-            <ListBox x:Name="listTasks" HorizontalAlignment="Left" Width="178" Margin="10" ItemsSource="{Binding}" DisplayMemberPath="taskName" SelectedIndex="0">
+        <Grid Height="347" Margin="0,0,10,0">
+            <ListBox x:Name="listTasks" HorizontalAlignment="Left" Width="210" Margin="10,10,0,10" ItemsSource="{Binding}" DisplayMemberPath="taskName" SelectedIndex="0">
             </ListBox>
-            <TabControl x:Name="tabControl"  HorizontalAlignment="Right" Width="406" Margin="0,10">
+            <TabControl x:Name="tabControl" Margin="233,10,0,10">
                 <TabItem Header="Backup settings">
                     <Grid Background="#FFE5E5E5">
+                        <Label x:Name="label_Copy6" Content="Task name" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.256,0.394" Margin="0,7,0,0"/>
+                        <TextBox x:Name="txtTaskName" Height="23" Margin="99,10,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SelectedItem.taskName, ElementName=listTasks}"/>
+                        <Label x:Name="label_Copy5" Content="SSH host" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.256,0.394" Margin="0,36,0,0"/>
+                        <TextBox x:Name="txtHost" Height="23" Margin="99,39,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SelectedItem.hostName, ElementName=listTasks}"/>
                         <Label x:Name="label" Content="SSH user" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.256,0.394" Margin="0,67,0,0"/>
-                        <TextBox x:Name="txtSshUser" Height="23" Margin="99,70,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=listTasks, Path=SelectedItem.sshUser}"/>
+                        <TextBox x:Name="txtSshUser" Height="23" Margin="99,70,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SelectedItem.sshUser, ElementName=listTasks}"/>
+                        <PasswordBox x:Name="txtSshPassword" Margin="99,100,11,0" VerticalAlignment="Top" Height="23" local:PasswordHelper.Attach="True"  local:PasswordHelper.Password="{Binding SelectedItem.sshPassword, ElementName=listTasks, Mode=TwoWay}" />
                         <Label x:Name="label_Copy" Content="SSH password" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.256,0.394" Margin="0,97,0,0"/>
                         <Label x:Name="label_Copy1" Content="MySQL user" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.256,0.394" Margin="0,128,0,0"/>
-                        <TextBox x:Name="txtDbUser" Height="23" Margin="99,131,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=listTasks, Path=SelectedItem.dbUser}"/>
+                        <TextBox x:Name="txtDbUser" Height="23" Margin="99,131,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding SelectedItem.dbUser, ElementName=listTasks}"/>
                         <Label x:Name="label_Copy2" Content="MySQL password" HorizontalAlignment="Left" Margin="0,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.256,0.394"/>
                         <Label x:Name="label_Copy3" Content="List of databases" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.256,0.394" Margin="1,193,0,0" Height="30"/>
-                        <TextBox x:Name="txtDbList" Margin="99,193,11,40" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding ElementName=listTasks, Path=SelectedItem.dbList, Mode=TwoWay}"/>
-                        <PasswordBox x:Name="txtSshPassword" Margin="99,100,11,0" VerticalAlignment="Top" Height="23" local:PasswordHelper.Attach="True"  local:PasswordHelper.Password="{Binding ElementName=listTasks, Path=SelectedItem.sshPassword, Mode=TwoWay}" />
-                        <PasswordBox x:Name="txtDbPassword" Margin="99,162,11,0" VerticalAlignment="Top" Height="23" local:PasswordHelper.Attach="True"  local:PasswordHelper.Password="{Binding ElementName=listTasks, Path=SelectedItem.dbPassword, Mode=TwoWay}"/>
-                        <Label x:Name="label_Copy4" Content="Backup storage" VerticalAlignment="Bottom" RenderTransformOrigin="-0.256,0.394" Margin="0,0,0,10" HorizontalAlignment="Left" Width="91"/>
-                        <TextBox x:Name="txtLocalFolder" Margin="99,0,11,10" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom" Text="{Binding ElementName=listTasks, Path=SelectedItem.localFolder}"/>
-                        <Label x:Name="label_Copy5" Content="SSH host" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.256,0.394" Margin="0,36,0,0"/>
-                        <TextBox x:Name="txtHost" Height="23" Margin="99,39,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=listTasks, Path=SelectedItem.hostName}"/>
-                        <Label x:Name="label_Copy6" Content="Task name" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.256,0.394" Margin="0,7,0,0"/>
-                        <TextBox x:Name="txtTaskName" Height="23" Margin="99,10,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=listTasks, Path=SelectedItem.taskName}"/>
+                        <PasswordBox x:Name="txtDbPassword" Margin="99,162,11,0" VerticalAlignment="Top" Height="23" local:PasswordHelper.Attach="True"  local:PasswordHelper.Password="{Binding SelectedItem.dbPassword, ElementName=listTasks, Mode=TwoWay}"/>
+                        <TextBox x:Name="txtDbList" Margin="99,193,11,40" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding SelectedItem.dbList, ElementName=listTasks, Mode=TwoWay}"/>
+                        <Label x:Name="label_Copy4" Content="Storage" VerticalAlignment="Bottom" RenderTransformOrigin="-0.256,0.394" Margin="0,0,0,10" HorizontalAlignment="Left" Width="91"/>
+                        <TextBox x:Name="txtLocalFolder" Margin="99,0,38,10" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom" Text="{Binding SelectedItem.localFolder, ElementName=listTasks}"/>
+                        <Button x:Name="cmdBrowse" Content="..." Margin="0,266,11,0" VerticalAlignment="Top" Height="23" Click="cmdBrowse_Click" HorizontalAlignment="Right" Width="23"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Schedule">
@@ -53,13 +54,14 @@
                     </Grid>
                 </TabItem>
             </TabControl>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0" >
-            <Button x:Name="cmdNew" Content="New task"  Click="cmdNew_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="82" Margin="10,0,20,0"/>
-            <Button x:Name="cmdDel" Content="Delete" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="77" Margin="0,0,10,0" Click="cmdDel_Click"/>
-            <Button x:Name="cmdSave" Content="Save settings" Click="cmdSave_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90" Margin="0,0,100,0"/>
-            <Button x:Name="cmdRun" Click="button_Click" Width="75" Height="20" VerticalAlignment="Bottom" Content="Run" HorizontalAlignment="Right" Margin="0"/>
-        </StackPanel>
+        </Grid>
+        <Grid Margin="0,0,0,10" >
+            <Button x:Name="cmdNew" Content="New task"  Click="cmdNew_Click" Height="20" VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" Width="100"/>
+            <Button x:Name="cmdDel" Content="Delete" Height="20" VerticalAlignment="Bottom" Margin="122,0,0,0" Click="cmdDel_Click" HorizontalAlignment="Left" Width="98"/>
+            <Button x:Name="cmdSave" Content="Save settings" Click="cmdSave_Click" Height="20" VerticalAlignment="Bottom" Margin="234,0,0,0" HorizontalAlignment="Left" Width="95"/>
+            <Button x:Name="cmdRun" Click="button_Click" Width="75" Height="20" VerticalAlignment="Bottom" Content="Run" Margin="0,0,10,0" HorizontalAlignment="Right"/>
+        </Grid>
+        <Label x:Name="label2" Content="Ну и куда ты потащил окно?!" HorizontalAlignment="Center" Margin="177,0,329,0" Width="170" RenderTransformOrigin="0.946,0.592"/>
     </StackPanel>
 
     <!--</Grid>-->
