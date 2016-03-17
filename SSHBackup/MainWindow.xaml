@@ -36,7 +36,7 @@
                 </TabItem>
                 <TabItem Header="Schedule">
                     <Grid Background="#FFE5E5E5">
-                        <CheckBox x:Name="chkShedule" Content="Scheduled backup" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Width="334" Checked="chkShedule_Checked" IsChecked="{Binding ElementName=listTasks, Path=SelectedItem.schedule}"/>
+                        <CheckBox x:Name="chkShedule" Content="Scheduled backup" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Width="334" IsChecked="{Binding ElementName=listTasks, Path=SelectedItem.schedule}"/>
                         <Grid x:Name="gridSchedule" HorizontalAlignment="Left" Height="140" Margin="10,30,0,0" VerticalAlignment="Top" Width="334" IsEnabled="{Binding IsChecked, ElementName=chkShedule}">
                             <Label x:Name="label1" Content="Run the task every" HorizontalAlignment="Left" VerticalAlignment="Top" Width="111"/>
                             <TextBox x:Name="txtScheduleInterval" HorizontalAlignment="Left" Height="23" Margin="121,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" Text="{Binding ElementName=listTasks, Path=SelectedItem.scheduleInterval}"/>
@@ -58,7 +58,7 @@
         <Grid Margin="0,0,0,10" >
             <Button x:Name="cmdNew" Content="New task"  Click="cmdNew_Click" Height="20" VerticalAlignment="Top" Margin="10,0,0,0" HorizontalAlignment="Left" Width="100"/>
             <Button x:Name="cmdDel" Content="Delete" Height="20" VerticalAlignment="Bottom" Margin="122,0,0,0" Click="cmdDel_Click" HorizontalAlignment="Left" Width="98"/>
-            <Button x:Name="cmdSave" Content="Save settings" Click="cmdSave_Click" Height="20" VerticalAlignment="Bottom" Margin="234,0,0,0" HorizontalAlignment="Left" Width="95"/>
+            <Button x:Name="cmdSave" Content="Save settings" Click="cmdSave_Click" Margin="234,0,0,0" HorizontalAlignment="Left" Width="95"/>
             <Button x:Name="cmdRun" Click="button_Click" Width="75" Height="20" VerticalAlignment="Bottom" Content="Run" Margin="0,0,10,0" HorizontalAlignment="Right"/>
         </Grid>
         <Label x:Name="label2" Content="Ну и куда ты потащил окно?!" HorizontalAlignment="Center" Margin="177,0,329,0" Width="170" RenderTransformOrigin="0.946,0.592"/>

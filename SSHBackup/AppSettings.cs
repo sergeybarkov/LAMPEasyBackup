@@ -15,10 +15,6 @@ namespace SSHBackup
     {
         public List<BackupTask> tasks { get; set; }
 
-        //[NonSerialized]
-        //public List<BackupIntervalType> backupIntervalTypes;
-
-
         public AppSettings() { tasks = new List<BackupTask>(); }
 
         public static AppSettings Init()
@@ -26,7 +22,6 @@ namespace SSHBackup
             AppSettings settings = null;
 
             var data = Properties.Settings.Default.data;
-            //var data = "";
 
             XmlSerializer formatter = new XmlSerializer(typeof(AppSettings));
 
@@ -60,6 +55,7 @@ namespace SSHBackup
                 var data = Encoding.UTF8.GetString(st.ToArray());
                 Properties.Settings.Default.data = data;
                 Properties.Settings.Default.Save();
+                BackupSchedule.AddTasks(tasks);
             }
         }
 
@@ -112,13 +108,7 @@ namespace SSHBackup
 
         public bool schedule { get; set; }
         public short scheduleInterval { get; set; }
-        public BackupIntervalType scheduleIntervalType { get; set; }
         public DateTime scheduleStartFrom { get; set; } 
     }
 
-    public class BackupIntervalType
-    {
-        public string name { get; set; }
-        public int value { get; set; }
-    }
 }

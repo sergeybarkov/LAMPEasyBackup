@@ -22,25 +22,7 @@ namespace SSHBackup
             settings = AppSettings.Init();
 
             listTasks.ItemsSource = settings.tasks;
-            //cmbScheduleIntervalType.ItemsSource = settings.backupIntervalTypes;
-
-
-            /*txtHost.Text = Properties.Settings.Default.sshHost;
-            txtSshUser.Text = Properties.Settings.Default.sshUser;
-            txtSshPassword.Password = Properties.Settings.Default.sshPassword;
-            txtDbUser.Text = Properties.Settings.Default.dbUser;
-            txtDbPassword.Password = Properties.Settings.Default.dbPassword;
-            txtDbList.Text = Properties.Settings.Default.dbList;
-            txtLocalFolder.Text = Properties.Settings.Default.localFolder;
-
-            chkShedule.IsChecked = Properties.Settings.Default.schedule;
-            txtScheduleInterval.Text = Properties.Settings.Default.schedulePeriod.ToString();
-
-            //cmbScheduleIntervalType.Selected
-
-
-            txtScheduleTime.Text = Properties.Settings.Default.scheduleStartTime;*/
-
+          
             var commandline = Environment.GetCommandLineArgs();
             if(commandline.Length > 2 && commandline[1] == "/background")
             {
@@ -66,17 +48,7 @@ namespace SSHBackup
             backup.OnFinish += Backup_OnFinish;
 
             new Thread(() => backup.Run()).Start();
-        }
-
-        /*private void runTask()
-        {
-            var backup = new SshBackup(txtHost.Text, txtSshUser.Text, txtSshPassword.Password, txtDbUser.Text, txtDbPassword.Password, txtLocalFolder.Text, txtDbList.Text.Split('\n').ToList());
-            backup.OnMessage += Backup_OnMessage;
-            backup.OnStart += Backup_OnStart;
-            backup.OnFinish += Backup_OnFinish;
-
-            new Thread(() => backup.Run()).Start();
-        }*/
+        }      
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -125,37 +97,7 @@ namespace SSHBackup
         private void cmdSave_Click(object sender, RoutedEventArgs e)
         {
             settings.Save();
-
-            BackupSchedule.AddTasks(settings.tasks);
-
-
-           /* Properties.Settings.Default.sshHost = txtHost.Text;
-            Properties.Settings.Default.sshUser = txtSshUser.Text;
-            Properties.Settings.Default.sshPassword = txtSshPassword.Password;
-            Properties.Settings.Default.dbUser = txtDbUser.Text;
-            Properties.Settings.Default.dbPassword = txtDbPassword.Password;
-            Properties.Settings.Default.dbList = txtDbList.Text;
-            Properties.Settings.Default.localFolder = txtLocalFolder.Text;
-
-            Properties.Settings.Default.schedule = chkShedule.IsChecked ?? false;
-            Properties.Settings.Default.schedulePeriod = int.Parse(txtScheduleInterval.Text);
-            Properties.Settings.Default.schedulePeriodType = (int)cmbScheduleIntervalType.Tag;
-            Properties.Settings.Default.scheduleStartTime = txtScheduleTime.Text;
-
-
-            Properties.Settings.Default.Save();*/
-        }
-
-       
-        private void checkBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void chkShedule_Checked(object sender, RoutedEventArgs e)
-        {
-            //gridSchedule.IsEnabled = chkShedule.IsChecked.Value;
-        }
+        }      
 
         private void cmdNew_Click(object sender, RoutedEventArgs e)
         {
@@ -189,6 +131,7 @@ namespace SSHBackup
             if(result == System.Windows.Forms.DialogResult.OK)
             {
                 txtLocalFolder.Text = dialog.SelectedPath;
+                txtLocalFolder.Focus();
             }
 
         }
